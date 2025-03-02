@@ -13,5 +13,10 @@ Bienvenue sur ma page github avec mes differents projets fait durant mon année 
 ## Utilisation:
 Utiliser l'executable qui vous est fourni juste après le make avec ./nom_de_l_executable
 
+MUL: Projet graphique*
+PSU: reproduction de commande existante
+CPE: Mise en place de crptage et d'algo
+Math: Mathematiques
+
 ## Contributeurs:
 - Hector Louis
