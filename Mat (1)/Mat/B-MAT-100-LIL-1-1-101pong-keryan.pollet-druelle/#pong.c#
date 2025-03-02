@@ -1,0 +1,56 @@
+/*
+** EPITECH PROJECT, 2024
+** pong
+** File description:
+** who calculate vector
+*/
+
+#include "my.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include <math.h>
+
+void hit_the_paddle(int ac, char **av)
+{
+    double Vx = (atof(av[4]) - atof(av[1]));
+    double Vy = (atof(av[5]) - atof(av[2]));
+    double Vz = (atof(av[6]) - atof(av[3]));
+    double norm = sqrt(Vx * Vx + Vy * Vy + Vz * Vz);
+    double angle = Vz / norm;
+
+    if ((atof(av[6]) > 0 && Vz < 0) || (atof(av[6]) < 0 && Vz > 0)) {
+        angle = asin(angle) * (180 / M_PI);
+        angle = sqrt(angle * angle);
+        printf("The incidence angle is:\n%.2f degrees\n", angle);
+        return;
+    } else
+        printf("The ball won't reach the paddle.\n");
+}
+
+int pong(int ac, char **av)
+{
+    double vx = (atof(av[4]) - atof(av[1]));
+    double vy = (atof(av[5]) - atof(av[2]));
+    double vz = (atof(av[6]) - atof(av[3]));
+    int time = atof(av[7]);
+    double future_vz;
+
+    printf("The velocity vector of the ball is:\n");
+    printf("(%.2f, %.2f, %.2f)\n", vx, vy, vz);
+    vx = time * vx + atof(av[4]);
+    vy = time * vy + atof(av[5]);
+    future_vz = time * vz + atof(av[6]);
+    printf("At time t + %d, ball coordinates will be:\n", time);
+    printf("(%.2f, %.2f, %.2f)\n", vx, vy, future_vz);
+    hit_the_paddle(ac, av);
+    return 0;
+}
+
+void main(int ac, char **av)
+{
+    if (ac != 8) {
+        printf("Not enough arguments\n");
+        return;
+    } else
+        pong(ac, av);    return;
+}

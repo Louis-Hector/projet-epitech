@@ -1,0 +1,128 @@
+#!/bin/python3
+
+import sys
+import csv
+import math
+
+def print_usage():
+    print("USAGE\n    ./105demography [code]+\n")
+    print("DESCRIPTION\n    code   country code")
+    sys.exit(0)
+
+def read_combined_csv(file_name, country_codes):
+    x = []
+    y = []
+    somme_x = 0
+    somme_y = 0
+    somme_x_y = 0
+    somme_x2 = 0
+    somme_y2 = 0
+    n = 0
+    combined_country_names = []
+    country_found = False
+    with open(file_name, 'r') as file:
+        reader = csv.reader(file, delimiter=';')
+        for row in reader:
+            if row[0] == "Country Name":
+                for i in row[2:]:
+                    try:
+                        x.append(int(i))
+                        somme_x += int(i)
+                        n += 1
+                    except ValueError:
+                        pass
+            if row[1] in country_codes:
+                country_found = True
+                combined_country_names.append(row[0])
+                for i, value in enumerate(row[2:]):
+                    try:
+                        if len(y) <= i:
+                            y.append(0)
+                        y[i] += int(value)
+                        somme_y += int(value)
+                    except ValueError:
+                        pass
+    if not country_found:
+        sys.exit(84)
+    for i in range(len(x)):
+        somme_x_y += x[i] * y[i]
+        somme_x2 += x[i] ** 2
+        somme_y2 += y[i] ** 2
+    return x, y, n, somme_x, somme_y, somme_x_y, somme_x2, somme_y2, combined_country_names
+
+def least_square(n, somme_x, somme_y, somme_x_y, somme_x2):
+    aX = (n * somme_x_y - somme_x * somme_y) / (n * somme_x2 - somme_x**2)
+    bX = (somme_y - aX * somme_x) / n
+    return aX, bX
+
+def least_square_new(n, somme_x, somme_y, somme_x_y, somme_y2):
+    aY = (n * somme_x_y - somme_y * somme_x) / (n * somme_y2 - somme_y**2)
+    bY = (somme_x - aY * somme_y) / n
+    return aY, bY
+
+
+def calculate_rms(y, x, aX, bX):
+    squared = 0
+    for i in range(len(x)):
+        residual = y[i] - (aX * x[i] + bX)
+        squared += residual ** 2
+    rms = math.sqrt(squared / len(x))
+    return rms
+
+def calculate_rms2(x, y, aY, bY):
+    squared = 0
+    for i in range(len(x)):
+        residual = (x[i] - (y[i] - bY) / aY )   
+        squared += residual ** 2
+    rms2 = math.sqrt(squared / len(x))
+    return rms2 
+
+def calculate_correlation(n, somme_x, somme_y, somme_x2, somme_y2, somme_x_y):
+    
+    numerateur = (n * somme_x_y) - (somme_x * somme_y)
+    denumerateur = ((n * somme_x2 - somme_x**2) * (n * somme_y2 - somme_y**2)) ** 0.5
+    if denumerateur == 0:
+        return 0
+    result = numerateur / denumerateur
+    return result
+
+def affichage(aX, bX, aY, bY, rms, rms2, country_code, correlation):
+    i = 0
+    print("Country: ", end="")
+    while i < len(country_code):
+        if i == len(country_code) - 1:
+            print(country_code[i])
+        else:
+            print(country_code[i], end=", ")
+        i += 1
+    print("Fit1")
+    print(f"\tY = {aX / 1000000:.2f} X - {abs(bX / 1000000):.2f}") 
+    print(f"\tRoot-mean-square deviation: {rms/1000000:.2f}")
+    print("\tPopulation in 2050: {:.2f}".format((aX * 2050 - abs(bX)) / 1000000))
+    print("Fit2")
+    print(f"\tX = {aY * 1000000:.2f} Y + {abs(bY):.2f}") 
+    print(f"\tRoot-mean-square deviation : {rms2 / 1000000:.2f}")
+    print(f"\tPopulation in 2050: {(2050 - bY) / aY / 1000000:.2f}")
+    print(f"Correlation: {correlation:.4f}")
+
+def main():
+    if len(sys.argv) < 2:
+        sys.exit(84)
+    if (len(sys.argv) == 2 and sys.argv[1] == "-h"):
+        print_usage()
+    if len(sys.argv) >= 2:
+        for i in range(1, len(sys.argv)):
+            if not sys.argv[i].isupper():
+                sys.exit(84)
+    country_codes = sys.argv[1:]
+    x, y, n, somme_x, somme_y, somme_x_y, somme_x2, somme_y2, combined_country_names = read_combined_csv("105demography_data.csv", country_codes)
+    aX, bX = least_square(n, somme_x, somme_y, somme_x_y, somme_x2)
+    rms = calculate_rms(y, x, aX, bX)
+    aY, bY = least_square_new(n, somme_x, somme_y, somme_x_y, somme_y2)
+    rms2 = calculate_rms2(y, x, aY, bY)
+    correlation = calculate_correlation(n, somme_x, somme_y, somme_x2, somme_y2, somme_x_y)
+    affichage(aX, bX, aY, bY, rms, rms2, combined_country_names, correlation)
+    sys.exit(0)
+
+if __name__ == "__main__":
+    main()

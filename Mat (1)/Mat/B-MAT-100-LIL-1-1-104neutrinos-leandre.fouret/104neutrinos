@@ -1,0 +1,54 @@
+#!/bin/python3
+
+import sys
+import math
+from decimal import *
+
+
+def getNextValue():
+    next_value = input("Enter next value: ")
+    if next_value == "END":
+        sys.exit(0)
+    next_value = int(next_value) if next_value.isdigit() else sys.exit(84)
+    return next_value
+
+def computeArithMean(first_arg, next_val, old_arith):
+    new_arith = (old_arith * first_arg + next_val )/ (first_arg + 1)
+    return new_arith
+
+def computeRootMeanSquare(arith_mean, standard_deviation):
+    new_rms_squared = (standard_deviation**2 + arith_mean **2)
+    return math.sqrt(new_rms_squared)
+
+def computeHarmonicMean(number_of_values, harmonic_mean, next_value):
+    if (next_value <= 0):
+        sys.exit(84)
+    harmonic = (number_of_values + 1) / ((number_of_values / harmonic_mean) + (1 / next_value))
+    return harmonic
+
+def main_loop(number_of_values, sd, arith_og, har):
+    while True:
+        next_value = getNextValue()
+        arithmetic_mean = computeArithMean(number_of_values, next_value, arith_og)
+        arith_og = arithmetic_mean
+        rms_mean = computeRootMeanSquare(arithmetic_mean, sd)
+        sd = math.sqrt((sd ** 2 * number_of_values + (next_value - arithmetic_mean) ** 2) / (number_of_values + 1))
+        value_har = computeHarmonicMean(number_of_values, har, next_value)
+        har = value_har
+        number_of_values += 1
+        print(f"    Number of values:    {number_of_values}")
+        print(f"    Standard deviation:  {sd:.2f}")
+        print(f"    Arithmetic mean:     {arithmetic_mean:.2f}") 
+        print(f"    Root mean square:    {Decimal(rms_mean).quantize(Decimal('.01'), rounding=ROUND_DOWN)}")
+        print(f"    Harmonic mean:       {value_har:.2f}\n")
+
+if __name__ == "__main__":
+    if (len(sys.argv) > 5 or len(sys.argv) < 5):
+        sys.exit(84)
+    for i in range(1, 5):
+        if (not sys.argv[i].isdigit()):
+            sys.exit(84)
+    number_of_values = int(sys.argv[1])
+    har = int(sys.argv[3])
+    sd = int(sys.argv[4])
+    main_loop(number_of_values, sd, int(sys.argv[2]), har)

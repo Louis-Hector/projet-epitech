@@ -1,0 +1,12 @@
+./#pong.c#:1: MAJOR:C-O1
+./101pong:1: MAJOR:C-O1
+./lib/my/libmy.a:1: MAJOR:C-O1
+./lib/my/my_getnbr.o:1: MAJOR:C-O1
+./lib/my/my_put_nbr.o:1: MAJOR:C-O1
+./lib/my/my_putchar.o:1: MAJOR:C-O1
+./lib/my/my_putstr.o:1: MAJOR:C-O1
+./lib/my/my_revstr.o:1: MAJOR:C-O1
+./lib/my/my_str_isnum.o:1: MAJOR:C-O1
+./lib/my/my_strlen.o:1: MAJOR:C-O1
+./libmy.a:1: MAJOR:C-O1
+./pong.c:26: MAJOR:C-F3
