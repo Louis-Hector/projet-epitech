@@ -1,6 +1,6 @@
 ## Projet Epitech :
 
-Bienvenue sur ma page github avce mes differents projets fait durant mon année à Epitech
+Bienvenue sur ma page github avec mes differents projets fait durant mon année à Epitech
 
 ## Technologies Utilisées :
 - Langage de programmation : C, ou python
