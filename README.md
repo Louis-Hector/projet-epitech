@@ -3,7 +3,7 @@
 Bienvenue sur ma page github avec mes differents projets fait durant mon année à Epitech
 
 ## Technologies Utilisées :
-- Langage de programmation : C, ou python
+- Langage de programmation : C, ou python, jupyternoetebook
 
 ## Si il n'y a pas de Readme dans le dossier alors l'Installation:
 1. Clonez le dépôt : `git clone https://github.com/votre-nom-utilisateur/psu-project1`
@@ -21,6 +21,7 @@ CPE: Mise en place de crptage et d'algo
 
 Math: Mathematiques
 
+Tardis: gestion de donnees d'un Csv, création de modele de prediction et un streamboard pour l'affichage des données
 
 ## Contributeurs:
 - Hector Louis
