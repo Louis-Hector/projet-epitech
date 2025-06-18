@@ -5,7 +5,7 @@ Bienvenue sur ma page github avec mes differents projets fait durant mon année 
 ## Technologies Utilisées :
 - Langage de programmation : C, ou python
 
-## Installation
+## Si il n'y a pas de Readme dans le dossier alors l'Installation:
 1. Clonez le dépôt : `git clone https://github.com/votre-nom-utilisateur/psu-project1`
 2. Compilez le projet : `make`
 3. Exécutez : `./nom_du_programme`
