@@ -1,0 +1,356 @@
+{
+  "name": "unsubscribe",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "unsubscribe",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "15f806ff-8aab-45f7-8b6b-836d66aafcd7",
+      "name": "Webhook",
+      "webhookId": "c98b1379-b089-4ccd-8f8d-025415bd5ce4"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "=<!DOCTYPE html>\n<html>\n<head>\n    <meta charset=\"UTF-8\">\n    <title>Unsubscribe successful</title>\n    <style>\n        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; background-color: #f9f9f9; }\n        .container { background: white; padding: 30px; border-radius: 8px; display: inline-block; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }\n        h1 { color: #2c3e50; }\n        p { color: #7f8c8d; font-size: 16px; margin-bottom: 30px; }\n        .btn-delete { background-color: #e74c3c; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block; }\n    </style>\n</head>\n<body>\n    <div class=\"container\">\n        <h1>You have successfully unsubscribed.</h1>\n        <p>Your email address has been removed from our newsletter.</p>\n        <hr style=\"border: 0; border-top: 1px solid #eee; margin: 30px 0;\">\n        <p><strong>Option RGPD :</strong> Do you also wish to permanently delete all your data from our database ?</p>\n        \n        <a href=\"http://localhost:5678/webhook/delete?id={{ $json.id }}\" class=\"btn-delete\">\n            Permanently delete my data\n        </a>\n    </div>\n</body>\n</html>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        672,
+        0
+      ],
+      "id": "5d62a6d0-fcd2-4a3f-8f3f-29ef2f89f32a",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "All your informations have been removed from our database. Thank you for your attention.",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        448,
+        224
+      ],
+      "id": "0e0d0a13-b514-45f6-84a5-40d99680694a",
+      "name": "Respond to Webhook1"
+    },
+    {
+      "parameters": {
+        "path": "delete",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        224
+      ],
+      "id": "ad77cc4b-981a-49b5-9515-813a2b953177",
+      "name": "Webhook1",
+      "webhookId": "4ef0665c-9e85-4d7a-84b0-ca8103672661"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "dataTableId": {
+          "__rl": true,
+          "value": "ho2ljAtL63yIxT7T",
+          "mode": "list",
+          "cachedResultName": "DATABASE",
+          "cachedResultUrl": "/projects/nW26casZRGvbbgPe/datatables/ho2ljAtL63yIxT7T"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyValue": "={{ $json.id }}"
+            }
+          ]
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "active": false
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Username",
+              "displayName": "Username",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "password",
+              "displayName": "password",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Topic",
+              "displayName": "Topic",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "session_id",
+              "displayName": "session_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Last_update",
+              "displayName": "Last_update",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Hour",
+              "displayName": "Hour",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Day",
+              "displayName": "Day",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Month",
+              "displayName": "Month",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Personalized_prompt",
+              "displayName": "Personalized_prompt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Private_Account",
+              "displayName": "Private_Account",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "active",
+              "displayName": "active",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        448,
+        0
+      ],
+      "id": "6d78131c-9ccb-49e1-b0ae-71c55e1e4db6",
+      "name": "Update Active User"
+    },
+    {
+      "parameters": {
+        "operation": "deleteRows",
+        "dataTableId": {
+          "__rl": true,
+          "value": "ho2ljAtL63yIxT7T",
+          "mode": "list",
+          "cachedResultName": "DATABASE",
+          "cachedResultUrl": "/projects/nW26casZRGvbbgPe/datatables/ho2ljAtL63yIxT7T"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyValue": "={{ $json.query.id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        224,
+        224
+      ],
+      "id": "06997225-7640-4cbe-a388-1c58fd2d92ce",
+      "name": "Delete User",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "ho2ljAtL63yIxT7T",
+          "mode": "list",
+          "cachedResultName": "DATABASE",
+          "cachedResultUrl": "/projects/nW26casZRGvbbgPe/datatables/ho2ljAtL63yIxT7T"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "keyValue": "={{ $json.query.email }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        224,
+        0
+      ],
+      "id": "1c1e5042-5e6d-4131-b9b2-5ddfdace7bac",
+      "name": "Get User",
+      "alwaysOutputData": true
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Get User",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook1": {
+      "main": [
+        [
+          {
+            "node": "Delete User",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Active User": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete User": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get User": {
+      "main": [
+        [
+          {
+            "node": "Update Active User",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "a1d7f3f9-986b-4df0-b161-bb066f343984",
+  "meta": {
+    "instanceId": "2b3442c33563c34e2595c9cbbc560a80b5ab3697c72ca869e8786898521f31d2"
+  },
+  "id": "0ctuFOdWOOY8v4RZ",
+  "tags": []
+}

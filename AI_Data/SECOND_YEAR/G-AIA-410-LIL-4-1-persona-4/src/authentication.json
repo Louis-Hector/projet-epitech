@@ -1,0 +1,1959 @@
+{
+  "name": "authentication",
+  "nodes": [
+    {
+      "parameters": {
+        "value": "={{ $json.Password }}"
+      },
+      "type": "n8n-nodes-base.crypto",
+      "typeVersion": 2,
+      "position": [
+        224,
+        0
+      ],
+      "id": "5b684e19-bb03-41a0-ac18-e7f881f4889f",
+      "name": "Crypt the password"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "ho2ljAtL63yIxT7T",
+          "mode": "list",
+          "cachedResultName": "DATABASE",
+          "cachedResultUrl": "/projects/nW26casZRGvbbgPe/datatables/ho2ljAtL63yIxT7T"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "keyValue": "={{ $json['Email address'] }}"
+            },
+            {
+              "keyName": "password",
+              "keyValue": "={{ $json.data }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        448,
+        0
+      ],
+      "id": "0c693b2b-d348-476c-885e-74352c37501b",
+      "name": "User already in db",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "value": "={{ $('Sign up').item.json.Password }}"
+      },
+      "type": "n8n-nodes-base.crypto",
+      "typeVersion": 2,
+      "position": [
+        448,
+        432
+      ],
+      "id": "78d6fef2-5f8f-4aa2-8a2b-864e65eac295",
+      "name": "Crypt password new user",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "6735ca2c-d2d8-4493-aee2-d425e20f9cdc",
+              "leftValue": "={{ $json['Email address'] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "84d982cb-7c70-4240-ba32-3cf77a77093d",
+              "leftValue": "={{ $json.Password }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "19765dd9-dff1-4d59-8d30-4e17266053fa",
+              "leftValue": "={{ $json['In accordance with the GDPR, by creating an account on Persona, I agree that the information entered will be used for the creation and sending of personalized newsletters.       https://www.cnil.fr/fr/reglement-europeen-protection-donnees'] }}",
+              "rightValue": "Yes",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        224,
+        240
+      ],
+      "id": "c62a1f30-f980-4f8a-8e98-5fd5a8da6743",
+      "name": "IF (New User want to sign in)"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "10ef1760-b89e-4a31-a245-63703492795a",
+              "leftValue": "={{ $json.email }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        896,
+        432
+      ],
+      "id": "f677cb41-f231-454c-9668-85f3a01c2fa3",
+      "name": "IF (Email is already present in the DB)"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "ho2ljAtL63yIxT7T",
+          "mode": "list",
+          "cachedResultName": "DATABASE",
+          "cachedResultUrl": "/projects/nW26casZRGvbbgPe/datatables/ho2ljAtL63yIxT7T"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "keyValue": "={{ $json['Email address'] }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        672,
+        432
+      ],
+      "id": "6effb5e1-c98a-486f-a463-0d1754489861",
+      "name": "Check Email",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "operation": "completion",
+        "respondWith": "redirect",
+        "redirectUrl": "=http://localhost:5678/webhook/6f58666a-da7f-4f24-ae73-5095d8bd45a4/chat",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 2.5,
+      "position": [
+        1120,
+        240
+      ],
+      "id": "27a8d0f0-bdc0-4e28-8623-ad8b73086f1d",
+      "name": "Connection",
+      "webhookId": "81a3dab5-224e-44bd-94e7-078d541781b6"
+    },
+    {
+      "parameters": {
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "New Password",
+              "fieldType": "password",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "New Password (Validation)",
+              "fieldType": "password",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {
+          "formTitle": "Change your Persona password",
+          "formDescription": "=To update your password, please enter your new password and confirm it.",
+          "buttonLabel": "Update password"
+        }
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 2.5,
+      "position": [
+        2688,
+        384
+      ],
+      "id": "cfb94726-b489-459f-9621-a18922fbadd5",
+      "name": "New Authentification",
+      "webhookId": "a624ab6a-2043-47b6-b327-15776c1ffd98"
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "ho2ljAtL63yIxT7T",
+          "mode": "list",
+          "cachedResultName": "DATABASE",
+          "cachedResultUrl": "/projects/nW26casZRGvbbgPe/datatables/ho2ljAtL63yIxT7T"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "email": "={{ $('Sign up').item.json['Email address'] }}",
+            "password": "={{ $('Crypt password new user').item.json.data }}",
+            "Last_update": "={{ $now }}",
+            "Private_Account": true,
+            "active": true
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Username",
+              "displayName": "Username",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "password",
+              "displayName": "password",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Topic",
+              "displayName": "Topic",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "session_id",
+              "displayName": "session_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Last_update",
+              "displayName": "Last_update",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Hour",
+              "displayName": "Hour",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Day",
+              "displayName": "Day",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Month",
+              "displayName": "Month",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Personalized_prompt",
+              "displayName": "Personalized_prompt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Private_Account",
+              "displayName": "Private_Account",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "active",
+              "displayName": "active",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        2016,
+        800
+      ],
+      "id": "a138531d-bd33-4f5e-99ce-769f8d478bc8",
+      "name": "Insert New user",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "dataTableId": {
+          "__rl": true,
+          "value": "ho2ljAtL63yIxT7T",
+          "mode": "list",
+          "cachedResultName": "DATABASE",
+          "cachedResultUrl": "/projects/nW26casZRGvbbgPe/datatables/ho2ljAtL63yIxT7T"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "keyValue": "={{ $('Sign in').item.json['Email address'] }}"
+            }
+          ]
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "email": "={{ $('Sign in').item.json['Email address'] }}",
+            "password": "={{ $json.data }}",
+            "Last_update": "={{ $now }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "password",
+              "displayName": "password",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Topic",
+              "displayName": "Topic",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "session_id",
+              "displayName": "session_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Last_update",
+              "displayName": "Last_update",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Hour",
+              "displayName": "Hour",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Day",
+              "displayName": "Day",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Month",
+              "displayName": "Month",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Personalized_prompt",
+              "displayName": "Personalized_prompt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        3360,
+        768
+      ],
+      "id": "d7375092-4809-4d37-b749-ba30541a1b46",
+      "name": "Insert New User (with alreday a email)",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "operation": "completion",
+        "respondWith": "redirect",
+        "redirectUrl": "http://localhost:5678/webhook/6f58666a-da7f-4f24-ae73-5095d8bd45a4/chat",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 2.5,
+      "position": [
+        2240,
+        800
+      ],
+      "id": "678b7d2a-ddc9-4a6d-8553-59e2a9a625d5",
+      "name": "Connection1",
+      "webhookId": "81a3dab5-224e-44bd-94e7-078d541781b6"
+    },
+    {
+      "parameters": {
+        "value": "={{ $json['New Password'] }}"
+      },
+      "type": "n8n-nodes-base.crypto",
+      "typeVersion": 2,
+      "position": [
+        3136,
+        768
+      ],
+      "id": "096ae74d-4739-4627-8543-8c1169cd81b8",
+      "name": "Crypt the new password",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "dataTableId": {
+          "__rl": true,
+          "value": "ho2ljAtL63yIxT7T",
+          "mode": "list",
+          "cachedResultName": "DATABASE",
+          "cachedResultUrl": "/projects/nW26casZRGvbbgPe/datatables/ho2ljAtL63yIxT7T"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "keyValue": "={{ $('Sign in').item.json['Email address'] }}"
+            }
+          ]
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Private_Account": 0,
+            "active": 0
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Username",
+              "displayName": "Username",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "password",
+              "displayName": "password",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Topic",
+              "displayName": "Topic",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "session_id",
+              "displayName": "session_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Last_update",
+              "displayName": "Last_update",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Hour",
+              "displayName": "Hour",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Day",
+              "displayName": "Day",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Month",
+              "displayName": "Month",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Personalized_prompt",
+              "displayName": "Personalized_prompt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Private_Account",
+              "displayName": "Private_Account",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "active",
+              "displayName": "active",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        896,
+        240
+      ],
+      "id": "00b3b740-fe3e-45d1-8179-0d03a6edb11b",
+      "name": "Update (Last connection sign up)"
+    },
+    {
+      "parameters": {
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Email address",
+              "fieldType": "email",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Password",
+              "fieldType": "password",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {
+          "formTitle": "Sign in to Persona",
+          "formDescription": "Enter your email address and password to access your Persona account.",
+          "buttonLabel": "Sign in"
+        }
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 2.5,
+      "position": [
+        0,
+        0
+      ],
+      "id": "563aa8a9-a54d-4f87-a674-f9662de75bf7",
+      "name": "Sign in",
+      "webhookId": "1ec82b29-7212-464e-8501-89b096075692"
+    },
+    {
+      "parameters": {
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Email address",
+              "fieldType": "email",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Password",
+              "fieldType": "password",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "In accordance with the GDPR, by creating an account on Persona, I agree that the information entered will be used for the creation and sending of personalized newsletters.       https://www.cnil.fr/fr/reglement-europeen-protection-donnees",
+              "fieldType": "radio",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Yes"
+                  },
+                  {
+                    "option": "No"
+                  }
+                ]
+              },
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {
+          "formTitle": "Create your Persona account",
+          "formDescription": "Create an account to receive personalized newsletters based on your interests. Your email will only be used for authentication and newsletter delivery.",
+          "buttonLabel": "Create account"
+        }
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 2.5,
+      "position": [
+        0,
+        240
+      ],
+      "id": "0002a84a-7039-4b6e-b7bf-a9e5472e3c5d",
+      "name": "Sign up",
+      "webhookId": "d6dc56af-4a8d-44db-b877-1dad2b0aff7b",
+      "executeOnce": false
+    },
+    {
+      "parameters": {
+        "formTitle": "Persona Home Page",
+        "formDescription": "Welcome to Persona ! Click the button below to continue.",
+        "options": {
+          "appendAttribution": false,
+          "buttonLabel": "Start with persona"
+        }
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.5,
+      "position": [
+        -672,
+        1056
+      ],
+      "id": "1492b202-7abc-4f04-be50-bbbcdba01b6f",
+      "name": "Start form",
+      "webhookId": "ae25a089-7c20-4085-bede-bdf5835a2ede"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "5a84bafc-bc4e-455b-b152-1c3901f13913",
+              "leftValue": "={{ $json['Your choice:'] }}",
+              "rightValue": "Sign in",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -224,
+        48
+      ],
+      "id": "e5e688ea-3160-4350-a47f-bf1882ef95af",
+      "name": "IF (Sign in or SIgn up)"
+    },
+    {
+      "parameters": {
+        "formFields": {
+          "values": []
+        },
+        "options": {
+          "formTitle": "Sign up Failed",
+          "formDescription": "This email address is already linked to a Persona account. You can sign in with this email or reset your password if you forgot it.",
+          "buttonLabel": "Back to Authentication"
+        }
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 2.5,
+      "position": [
+        1120,
+        432
+      ],
+      "id": "182b44d3-c6f5-448c-b35b-83ba6cd06b7d",
+      "name": "Sign up Failed",
+      "webhookId": "7ff498b0-154c-4b26-8ac7-4e2b17e49ef2"
+    },
+    {
+      "parameters": {
+        "formFields": {
+          "values": []
+        },
+        "options": {
+          "formTitle": "Consent required",
+          "formDescription": "To create a Persona account, you must accept that your email and preferences are used to create and send personalized newsletters.",
+          "buttonLabel": "Back to Authentication"
+        }
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 2.5,
+      "position": [
+        448,
+        240
+      ],
+      "id": "ad16c495-7f4f-4bca-babc-cab9788b19f3",
+      "name": "GDPR Consent Required",
+      "webhookId": "7ff498b0-154c-4b26-8ac7-4e2b17e49ef2"
+    },
+    {
+      "parameters": {
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Your choice:",
+              "fieldType": "radio",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Sign in"
+                  },
+                  {
+                    "option": "Sign up"
+                  }
+                ]
+              },
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {
+          "formTitle": "Persona Authentication",
+          "formDescription": "Choose to sign in or sign up",
+          "buttonLabel": "Continue"
+        }
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 2.5,
+      "position": [
+        -448,
+        1056
+      ],
+      "id": "3ea5559a-ed8a-40fc-809c-b89f741fc920",
+      "name": "Authentication",
+      "webhookId": "3946680f-53f8-4603-913d-71f12d1d7795"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3d28b5f3-4a1d-4424-882e-512e8e7543f5",
+              "name": "Email",
+              "value": "={{ $('Sign up').item.json['Email address'] }}",
+              "type": "string"
+            },
+            {
+              "id": "020f0d2a-c1bb-4910-a110-4b642e9ed115",
+              "name": "Password",
+              "value": "={{ $('Sign up').item.json.Password }}",
+              "type": "string"
+            },
+            {
+              "id": "798fbe6b-a936-4b49-97e5-262dcc964f0f",
+              "name": "Code",
+              "value": "={{ (Math.random() * 999999).round().toString() }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1120,
+        624
+      ],
+      "id": "c08f012f-7fa1-4f19-bb50-b82ad281a313",
+      "name": "generate verif code"
+    },
+    {
+      "parameters": {
+        "fromEmail": "={{ $env.PERSONA_FROM_EMAIL }}",
+        "toEmail": "={{ $('Sign up').item.json['Email address'] }}",
+        "subject": "Your Persona verification code",
+        "emailFormat": "text",
+        "text": "=Thank you for creating a Persona account.\nPlease use the verification code below to confirm your email address:\n\n {{ $json.Code }}\n\nIf you did not request this account creation, you can ignore this email.",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        1344,
+        672
+      ],
+      "id": "5a3ae437-a502-4e10-b9da-c502f6e58d3b",
+      "name": "Send Verification Code",
+      "webhookId": "add1d3cb-5407-4d41-a2bc-b2534bba900f",
+      "credentials": {
+        "smtp": {
+          "id": "98Y4hJhKD1jmA29J",
+          "name": "SMTP from env"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Verification code",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {
+          "formTitle": "Verify your email address",
+          "formDescription": "We sent a verification code to your email address. Please enter it below to complete your Persona account creation.",
+          "buttonLabel": "Verify my email"
+        }
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 2.5,
+      "position": [
+        1568,
+        672
+      ],
+      "id": "aaf8848f-48aa-4e0e-9305-de015fdb9160",
+      "name": "Verify Email Code",
+      "webhookId": "bf75baf2-0c24-4141-91f1-a22d660f5c93"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "fad83a82-2531-4ed9-8e89-e59b4d64b5cc",
+              "leftValue": "={{ $json['Verification code'] }}",
+              "rightValue": "={{ $('generate verif code').item.json.Code }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1792,
+        672
+      ],
+      "id": "f96b7453-0635-469f-ad0b-f7af5235f90f",
+      "name": "is verif code correct"
+    },
+    {
+      "parameters": {
+        "formFields": {
+          "values": []
+        },
+        "options": {
+          "formTitle": "Verification failed",
+          "formDescription": "The verification code is incorrect.",
+          "buttonLabel": "Back to Authentication"
+        }
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 2.5,
+      "position": [
+        2016,
+        608
+      ],
+      "id": "aa42f97a-1ff3-4a83-be17-3f1a88685eb9",
+      "name": "Verif code fail",
+      "webhookId": "7ff498b0-154c-4b26-8ac7-4e2b17e49ef2"
+    },
+    {
+      "parameters": {
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Next Step",
+              "fieldType": "radio",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Reset Password"
+                  },
+                  {
+                    "option": "Back to authentication"
+                  }
+                ]
+              },
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {
+          "formTitle": "Sign in Failed",
+          "formDescription": "The email address or password is incorrect. What would you like to do next ?",
+          "buttonLabel": "Continue"
+        }
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 2.5,
+      "position": [
+        1344,
+        192
+      ],
+      "id": "9625eada-8914-427c-83e5-717a3bfd7191",
+      "name": "Forgot password",
+      "webhookId": "24363b26-ab3c-4f2c-af2c-c94bfaa9b3aa"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "dda0874d-31ea-4662-b99a-5ef27c89ded7",
+              "leftValue": "={{ $json['Next Step'] }}",
+              "rightValue": "Reset Password",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1568,
+        192
+      ],
+      "id": "694fccb5-b21e-419a-8fc3-e3b29519481d",
+      "name": "is password forgot"
+    },
+    {
+      "parameters": {
+        "formFields": {
+          "values": []
+        },
+        "options": {
+          "formTitle": "Reset password failed",
+          "formDescription": "The new password and the new validation password are not the same.",
+          "buttonLabel": "Back to Reset Password"
+        }
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 2.5,
+      "position": [
+        3136,
+        384
+      ],
+      "id": "3afb64d7-e514-4c0d-9a9c-f4c70269c73e",
+      "name": "2 codes differents",
+      "webhookId": "7ff498b0-154c-4b26-8ac7-4e2b17e49ef2"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3d28b5f3-4a1d-4424-882e-512e8e7543f5",
+              "name": "Email",
+              "value": "={{ $('Sign in').item.json['Email address'] }}",
+              "type": "string"
+            },
+            {
+              "id": "020f0d2a-c1bb-4910-a110-4b642e9ed115",
+              "name": "Password",
+              "value": "={{ $('Sign in').item.json.Password }}",
+              "type": "string"
+            },
+            {
+              "id": "798fbe6b-a936-4b49-97e5-262dcc964f0f",
+              "name": "Code",
+              "value": "={{ (Math.random() * 999999).round().toString() }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1792,
+        192
+      ],
+      "id": "8df2695b-dd60-4cc8-9401-65065c83cd43",
+      "name": "generate verif code1"
+    },
+    {
+      "parameters": {
+        "fromEmail": "={{ $env.PERSONA_FROM_EMAIL }}",
+        "toEmail": "={{ $('Sign in').item.json['Email address'] }}",
+        "subject": "Your Persona verification code",
+        "emailFormat": "text",
+        "text": "=Reset Persona account password\nPlease use the verification code below to confirm your email address:\n\n {{ $json.Code }}\n\nIf you did not request this account creation, you can ignore this email.",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        2016,
+        192
+      ],
+      "id": "ed5f8cce-bc07-4486-8c58-3eb4592fff74",
+      "name": "Send Verification Code1",
+      "webhookId": "add1d3cb-5407-4d41-a2bc-b2534bba900f",
+      "credentials": {
+        "smtp": {
+          "id": "98Y4hJhKD1jmA29J",
+          "name": "SMTP from env"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Verification code",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {
+          "formTitle": "Verify your email address",
+          "formDescription": "We sent a verification code to your email address. Please enter it below to verify your email.",
+          "buttonLabel": "Verify my email"
+        }
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 2.5,
+      "position": [
+        2240,
+        192
+      ],
+      "id": "1d41421c-ac16-41ea-92d7-d17706d2f98e",
+      "name": "Verify Email Code1",
+      "webhookId": "bf75baf2-0c24-4141-91f1-a22d660f5c93"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "fad83a82-2531-4ed9-8e89-e59b4d64b5cc",
+              "leftValue": "={{ $json['Verification code'] }}",
+              "rightValue": "={{ $('generate verif code1').item.json.Code }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        2464,
+        192
+      ],
+      "id": "e2938a55-4a91-49b0-8b15-001653725c14",
+      "name": "is verif code correct1"
+    },
+    {
+      "parameters": {
+        "formFields": {
+          "values": []
+        },
+        "options": {
+          "formTitle": "Verification failed",
+          "formDescription": "The verification code is incorrect.",
+          "buttonLabel": "Back to Authentication"
+        }
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 2.5,
+      "position": [
+        2688,
+        192
+      ],
+      "id": "6430c965-fbc4-4430-b493-b752f54cf48c",
+      "name": "Verif code fail1",
+      "webhookId": "7ff498b0-154c-4b26-8ac7-4e2b17e49ef2"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "ecde5f81-0d5e-4fdf-9c38-23c1e92d247f",
+              "leftValue": "={{ $json.id }}",
+              "rightValue": "Yes",
+              "operator": {
+                "type": "number",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        672,
+        0
+      ],
+      "id": "12f9c011-dd6e-4a6d-9c81-6e5ba787bb60",
+      "name": "IF user in db",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "659f7a5b-c48f-4b7e-8d90-9ba30f672e0a",
+              "leftValue": "={{ $json.id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "number",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1120,
+        0
+      ],
+      "id": "5e714cc6-e82b-411f-8c80-7dbbe899fde1",
+      "name": "is email exist",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "formFields": {
+          "values": []
+        },
+        "options": {
+          "formTitle": "Invalid email address",
+          "formDescription": "This email address is not linked to any Persona account.",
+          "buttonLabel": "Back to Authentication"
+        }
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 2.5,
+      "position": [
+        1344,
+        0
+      ],
+      "id": "64989850-a4f6-4435-8aa9-edadc86603df",
+      "name": "email does not exit",
+      "webhookId": "7ff498b0-154c-4b26-8ac7-4e2b17e49ef2"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "ho2ljAtL63yIxT7T",
+          "mode": "list",
+          "cachedResultName": "DATABASE",
+          "cachedResultUrl": "/projects/nW26casZRGvbbgPe/datatables/ho2ljAtL63yIxT7T"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "keyValue": "={{ $('Sign in').item.json['Email address'] }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        896,
+        0
+      ],
+      "id": "1d3ab9e4-4345-4ff2-8663-f833349f03d7",
+      "name": "Get row(s)",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "options": {
+          "formTitle": "Password updated",
+          "formDescription": "Your password has been updated, you can now sign in.",
+          "buttonLabel": "Back to Authentication"
+        }
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 2.5,
+      "position": [
+        3584,
+        864
+      ],
+      "id": "c2e45e87-7c3d-456d-870a-01a4665cfc99",
+      "name": "password updated with sucess",
+      "webhookId": "25fd19f9-2ab4-4d82-9c8c-14d65b834ff2"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "40860dfe-5837-43f1-b68d-a46e135b7763",
+              "leftValue": "={{ $json['New Password'] }}",
+              "rightValue": "={{ $json['New Password (Validation)'] }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        2912,
+        384
+      ],
+      "id": "92a6eb16-89db-4a64-8920-4424b68fbf6d",
+      "name": "is password valid"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Crypt the password": {
+      "main": [
+        [
+          {
+            "node": "User already in db",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "User already in db": {
+      "main": [
+        [
+          {
+            "node": "IF user in db",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Crypt password new user": {
+      "main": [
+        [
+          {
+            "node": "Check Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF (New User want to sign in)": {
+      "main": [
+        [
+          {
+            "node": "Crypt password new user",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "GDPR Consent Required",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Email": {
+      "main": [
+        [
+          {
+            "node": "IF (Email is already present in the DB)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF (Email is already present in the DB)": {
+      "main": [
+        [
+          {
+            "node": "Sign up Failed",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "generate verif code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "New Authentification": {
+      "main": [
+        [
+          {
+            "node": "is password valid",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert New User (with alreday a email)": {
+      "main": [
+        [
+          {
+            "node": "password updated with sucess",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert New user": {
+      "main": [
+        [
+          {
+            "node": "Connection1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Crypt the new password": {
+      "main": [
+        [
+          {
+            "node": "Insert New User (with alreday a email)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update (Last connection sign up)": {
+      "main": [
+        [
+          {
+            "node": "Connection",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sign in": {
+      "main": [
+        [
+          {
+            "node": "Crypt the password",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sign up": {
+      "main": [
+        [
+          {
+            "node": "IF (New User want to sign in)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start form": {
+      "main": [
+        [
+          {
+            "node": "Authentication",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF (Sign in or SIgn up)": {
+      "main": [
+        [
+          {
+            "node": "Sign in",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Sign up",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sign up Failed": {
+      "main": [
+        [
+          {
+            "node": "Authentication",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GDPR Consent Required": {
+      "main": [
+        [
+          {
+            "node": "Authentication",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Authentication": {
+      "main": [
+        [
+          {
+            "node": "IF (Sign in or SIgn up)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "generate verif code": {
+      "main": [
+        [
+          {
+            "node": "Send Verification Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Verify Email Code": {
+      "main": [
+        [
+          {
+            "node": "is verif code correct",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Verification Code": {
+      "main": [
+        [
+          {
+            "node": "Verify Email Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "is verif code correct": {
+      "main": [
+        [
+          {
+            "node": "Insert New user",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Verif code fail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Verif code fail": {
+      "main": [
+        [
+          {
+            "node": "Authentication",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Forgot password": {
+      "main": [
+        [
+          {
+            "node": "is password forgot",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "is password forgot": {
+      "main": [
+        [
+          {
+            "node": "generate verif code1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Authentication",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "2 codes differents": {
+      "main": [
+        [
+          {
+            "node": "New Authentification",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "generate verif code1": {
+      "main": [
+        [
+          {
+            "node": "Send Verification Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Verification Code1": {
+      "main": [
+        [
+          {
+            "node": "Verify Email Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Verify Email Code1": {
+      "main": [
+        [
+          {
+            "node": "is verif code correct1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "is verif code correct1": {
+      "main": [
+        [
+          {
+            "node": "New Authentification",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Verif code fail1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Verif code fail1": {
+      "main": [
+        [
+          {
+            "node": "Forgot password",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF user in db": {
+      "main": [
+        [
+          {
+            "node": "Update (Last connection sign up)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get row(s)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "is email exist": {
+      "main": [
+        [
+          {
+            "node": "Forgot password",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "email does not exit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "email does not exit": {
+      "main": [
+        [
+          {
+            "node": "Authentication",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s)": {
+      "main": [
+        [
+          {
+            "node": "is email exist",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "password updated with sucess": {
+      "main": [
+        [
+          {
+            "node": "Authentication",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "is password valid": {
+      "main": [
+        [
+          {
+            "node": "Crypt the new password",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "2 codes differents",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "e844fdd8-2106-4740-9006-3a4373aded2a",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "2b3442c33563c34e2595c9cbbc560a80b5ab3697c72ca869e8786898521f31d2"
+  },
+  "id": "gHqefrAqWv5Cv4U4",
+  "tags": []
+}

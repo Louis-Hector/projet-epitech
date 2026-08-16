@@ -1,0 +1,24 @@
+env:
+  environment: LunarLander-v3
+  render_mode: human
+
+algo:
+  type: dqn
+
+hypers:
+  BATCH_SIZE: 128
+  GAMMA: 0.99
+  EPS_START: 1.0
+  EPS_END: 0.01
+  EPS_DECAY: 2500
+  TAU: 0.005
+  LR: 0.0003
+
+parameters:
+  ENABLE_WIND: false
+  WIND_POWER: 15.0
+  TURBULENCE_POWER: 0
+  GRAVITY: -10
+
+seed:
+  number: [1, 15, 28, 33, 49]

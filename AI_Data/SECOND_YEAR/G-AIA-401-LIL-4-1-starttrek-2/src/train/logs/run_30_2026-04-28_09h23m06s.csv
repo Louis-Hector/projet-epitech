@@ -1,0 +1,42 @@
+# Run configuration
+# Environment,LunarLander-v3
+# Render mode,rgb_array
+# Batch,128
+# Gamma,0.99
+# Eps_start,0.9
+# Eps_end,0.01
+# Eps_decay,2500
+# Tau,0.005
+# Lr,0.0003
+
+Episode,Reward,Episode_length,Status
+0,-102.96487420922283,75,Terminated: Crash
+1,-188.7828663101621,74,Terminated: Crash
+2,-509.97582348918,99,Terminated: Out of view
+3,-137.93479949744602,95,Terminated: Crash
+4,-89.20394313974856,68,Terminated: Crash
+5,-258.73423943619645,128,Terminated: Crash
+6,-230.9904370962204,115,Terminated: Crash
+7,-81.6275998631025,169,Terminated: Crash
+8,-30.782520217181855,136,Terminated: Crash
+9,-37.73186636464615,103,Terminated: Crash
+10,-125.04489742621786,125,Terminated: Crash
+11,-85.40772128656705,145,Terminated: Crash
+12,-164.15486948425365,309,Terminated: Crash
+13,-7.059513123148875,231,Terminated: Crash
+14,-61.39736939483589,144,Terminated: Crash
+15,4.48647180654271,245,Terminated: Crash
+16,-69.10285428876196,999,Truncated: Sleep
+17,-50.62784109660479,999,Truncated: Sleep
+18,-160.4386003700804,999,Truncated: Sleep
+19,-55.77322102442735,999,Truncated: Sleep
+20,248.93940578715933,508,Terminated: Landed
+21,-66.16335028926022,236,Terminated: Crash
+22,-23.139171286546866,999,Truncated: Sleep
+23,-1.9514435809209656,999,Truncated: Sleep
+24,-63.22674978233768,999,Truncated: Sleep
+25,-57.32223932667433,999,Truncated: Sleep
+26,-127.81835250080641,431,Terminated: Crash
+27,-200.6701683408108,638,Terminated: Crash
+28,-123.09916702305249,346,Terminated: Crash
+29,-186.00538814353848,926,Terminated: Crash

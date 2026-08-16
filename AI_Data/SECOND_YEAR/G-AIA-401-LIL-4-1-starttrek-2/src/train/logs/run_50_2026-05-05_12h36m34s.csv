@@ -1,0 +1,62 @@
+# Run configuration
+# Environment,LunarLander-v3
+# Render mode,rgb_array
+# Batch,128
+# Gamma,0.99
+# Eps_start,0.9
+# Eps_end,0.01
+# Eps_decay,2500
+# Tau,0.005
+# Lr,0.0003
+
+Episode,Reward,Episode_length,Status
+0,-192.93928494899393,77,Terminated: Crash
+1,-167.2377475850684,77,Terminated: Crash
+2,-79.68548161781675,115,Terminated: Crash
+3,-109.00576648838928,115,Terminated: Crash
+4,-380.12506601601075,109,Terminated: Out of view
+5,-150.96488635697435,80,Terminated: Crash
+6,-155.77965397400135,121,Terminated: Crash
+7,-328.9124519587342,109,Terminated: Out of view
+8,-358.57956435029706,134,Terminated: Out of view
+9,-101.52532392198951,88,Terminated: Crash
+10,-78.42752267040606,167,Terminated: Crash
+11,-70.39463384385664,121,Terminated: Crash
+12,-59.56026948857961,130,Terminated: Crash
+13,-92.56507391480946,281,Terminated: Crash
+14,-10.757032475324266,173,Terminated: Crash
+15,-52.423517789341616,228,Terminated: Crash
+16,-21.026119704311114,159,Terminated: Crash
+17,-36.040314723963434,251,Terminated: Crash
+18,205.95706066031266,501,Terminated: Landed
+19,-48.71988067663061,999,Truncated: Sleep
+20,-46.76000803100137,999,Truncated: Sleep
+21,-35.75209629367926,999,Truncated: Sleep
+22,147.02409129518918,916,Terminated: Crash
+23,37.596277597961745,999,Truncated: Sleep
+24,-17.84699473045886,282,Terminated: Crash
+25,-36.6428039249048,999,Truncated: Sleep
+26,-39.93455984415088,999,Truncated: Sleep
+27,-130.8561914203262,85,Terminated: Crash
+28,-37.94892776051112,999,Truncated: Sleep
+29,-167.88455971436073,376,Terminated: Crash
+30,128.25369899926923,784,Terminated: Crash
+31,-11.972167440761346,999,Truncated: Sleep
+32,-53.87439427553955,999,Truncated: Sleep
+33,-84.92716289934866,999,Truncated: Sleep
+34,-177.76396239763648,116,Terminated: Crash
+35,-38.83441715495183,999,Truncated: Sleep
+36,-16.14866484958977,999,Truncated: Sleep
+37,-9.75063960988973,999,Truncated: Sleep
+38,-188.95465055208118,167,Terminated: Crash
+39,-194.81862871487272,162,Terminated: Crash
+40,-43.12199985915149,999,Truncated: Sleep
+41,-194.6918133649497,104,Terminated: Crash
+42,0.2098847805574131,999,Truncated: Sleep
+43,-8.629672669799827,999,Truncated: Sleep
+44,8.511944844292216,442,Terminated: Crash
+45,-49.83466813350044,999,Truncated: Sleep
+46,-51.581458847617526,999,Truncated: Sleep
+47,-56.20726864461469,999,Truncated: Sleep
+48,-92.46516576936192,999,Truncated: Sleep
+49,-26.610126501167137,999,Truncated: Sleep
