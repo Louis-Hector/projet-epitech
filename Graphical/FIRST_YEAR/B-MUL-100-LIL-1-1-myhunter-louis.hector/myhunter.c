@@ -140,6 +140,6 @@ int main(int ac, char **av)
         sfSound_setBuffer(hunter.sound, hunter.sound_buffer);
         sfSound_play(hunter.sound);
         game_loop(&hunter, 6);
-    }IRE
+    }
     return 0;
 }
