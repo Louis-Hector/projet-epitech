@@ -16,17 +16,23 @@ Welcome to my repository containing the various projects completed during my stu
 
 The projects are organized by technical modules and domains:
 
-- **[`Graphical`](./Graphical)** — 2D rendering, game loops, animations, and collision algorithms using CSFML.
-
-- **[`Command_shell`](./Shell)** — UNIX system programming, process handling, and custom shell implementations.
+- **[`AI`](./AI)** — Machine learning, reinforcement learning, prompt engineering, and automated data pipelines.
 
 - **[`Algorithm`](./Algorithm)** — Data structures, pathfinding, compilers, and virtual machine architecture.
 
+- **[`Graphical`](./Graphical)** — 2D rendering, game loops, animations, and collision algorithms using CSFML.
+
 - **[`Mathematics`](./Mathematics)** — Linear algebra, matrix transformations, statistics, and signal analysis.
 
-- **[`AI`](./AI)** — Machine learning, reinforcement learning, prompt engineering, and automated data pipelines.
-
 - **[`Network`](./Network)** — Socket programming, network protocols (FTP), and client-server architectures.
+
+- **[`OOP`](./OOP)** — Advanced C++ design patterns, dynamic library loading (`.so`), and 3D graphics rendering.
+
+- **[`Shell`](./Shell)** — UNIX system programming, process handling, and custom shell implementations.
+
+- **[`Special_Project`](./Special_Project)** - Capstone projects integrating TCP servers, autonomous Python AI, and real-time SFML graphics, Raylib.
+
+- **[`Thread`](./Thread)** — Concurrent programming, multi-threading (`pthread`, `std::thread`), mutex synchronization, and IPC.
 
 ---
 
