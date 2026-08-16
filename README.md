@@ -24,7 +24,7 @@ The projects are organized by technical modules and domains:
 
 - **[`Mathematics`](./Mathematics)** — Linear algebra, matrix transformations, statistics, and signal analysis.
 
-- **[`AI_Data`](./AI_Data)** — Machine learning, reinforcement learning, prompt engineering, and automated data pipelines.
+- **[`AI`](./AI)** — Machine learning, reinforcement learning, prompt engineering, and automated data pipelines.
 
 - **[`Network`](./Network)** — Socket programming, network protocols (FTP), and client-server architectures.
 
