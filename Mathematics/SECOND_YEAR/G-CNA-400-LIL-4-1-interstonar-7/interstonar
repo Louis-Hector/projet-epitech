@@ -1,0 +1,20 @@
+#!/bin/python3
+
+from core import print_help, parse_args, sys
+from file_global import launch_global
+from file_local import launch_local
+    
+def main():
+    if (len(sys.argv) == 2 and sys.argv[1] == "--help"):
+        print_help()
+    if (len(sys.argv) < 2):
+        sys.exit(84)
+    type_file, file, time, tab_pi_vi = parse_args()
+    if (type_file == "--global"):
+        launch_global(file, time, tab_pi_vi)
+    else:
+        launch_local(file, time, tab_pi_vi)
+    sys.exit(0)
+    
+if __name__ == '__main__':
+    main()

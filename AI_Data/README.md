@@ -1,36 +1,36 @@
 ## AI_DATA :
 
-Bienvenue dans la section **Machine Learning**, **Intelligence Artificielle** et **Gestion de données**.
+Welcome to the **Machine Learning**, **Artificial Intelligence**, and **Data Management** section.
 
 ---
 
-## Technologies et Langages
+## Technologies and Languages
 
-- **Langages :** `Python`, `JupyterNotebook`
-- **Environnement :** `Python`, `n8n`
+- **Languages :** `Python`, `JupyterNotebook`
+- **Compilation System :** `Python`, `n8n`
 
 ---
 
-## Structure des Projets
+## Project Structure
 
 ### *FIRST_YEAR* :
 
-- **[`Tardis`](FIRST_YEAR/Tardis/README.md)** — Nettoyage et préparation de données ferroviaires pour entraîner un modèle de prédiction des retards de trains.
+- **[`Tardis`](FIRST_YEAR/Tardis/README.md)** — Cleaning and preparing railway data to train a train delay prediction model.
 
 ### *SECOND_YEAR* :
 
-- **[`Cvrie`](SECOND_YEAR/G-AIA-400-LIL-4-1-cvrie-5/README.md)** — Étude comparative et mise en pratique de l'apprentissage supervisé et non-supervisé.
+- **[`Cvrie`](SECOND_YEAR/G-AIA-400-LIL-4-1-cvrie-5/README.md)** — Comparative study and practical application of supervised and unsupervised learning.
 
-- **[`StartTrek`](SECOND_YEAR/G-AIA-401-LIL-4-1-starttrek-2/README.md)** — Implémentation d'un algorithme d'apprentissage par renforcement (*Reinforcement Learning*) sur l'environnement Lunar Lander.
+- **[`StartTrek`](SECOND_YEAR/G-AIA-401-LIL-4-1-starttrek-2/README.md)** — Implementation of a reinforcement learning algorithm for the Lunar Lander environment.
 
--  **[`Codename`](SECOND_YEAR/G-AIA-410-LIL-4-1-codename-8/README.md)** — Cybersécurité appliqué à l'IA : conception de stratégies de *prompt injection* (attaques) et de filtres de sécurité (défenses).
+-  **[`Codename`](SECOND_YEAR/G-AIA-410-LIL-4-1-codename-8/README.md)** — Cybersecurity applied to AI: designing prompt injection strategies (attacks) and security filters (defenses).
 
-- **[`Persona`](SECOND_YEAR/G-AIA-410-LIL-4-1-persona-4/README.md)** — Automatisation du traitement de l'information et génération d'une newsletter via **n8n** et des modèles de langage.
+- **[`Persona`](SECOND_YEAR/G-AIA-410-LIL-4-1-persona-4/README.md)** — Automation of information processing and newsletter generation using **n8n** and language models.
 
-### Pensez à supprimer vos .venv ou .env généres afin d'éviter qu'ils prennent de la place en arriere plan. Et surtout ne pas les inclures dans vos commits !
+#### Remember to delete any generated `.venv` or `.env` folders to avoid them taking up space in the background. And above all, do not include them in your commits!
 
 ---
 
-## Contributeurs:
+## Contributors:
 - Hector Louis
-- Minflag (Compte Epitech)
+- Minflag (Epitech Account)
