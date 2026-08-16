@@ -1,27 +1,45 @@
-## Projet Epitech :
+## Projets Epitech :
 
-Bienvenue sur ma page github avec mes differents projets fait durant mon année à Epitech
+Bienvenue sur mon dépôt regroupant les différents projets réalisés au cours de mon cursus à **Epitech**.
 
-## Technologies Utilisées :
-- Langage de programmation : C, ou python, jupyternoetebook
+## Technologies et Langages
 
-## Si il n'y a pas de Readme dans le dossier alors l'Installation:
-1. Clonez le dépôt : `git clone https://github.com/votre-nom-utilisateur/psu-project1`
-2. Compilez le projet : `make`
-3. Exécutez : `./nom_du_programme`
+- **Langages principaux :** C, C++, Python, JupyterNotebook
+- **Compilation Systeme :** Make
 
-## Utilisation:
-Utiliser l'executable qui vous est fourni juste après le make avec ./nom_de_l_executable
+## Structure des Projets
 
-MUL: Projet graphique
+Les projets sont organisés par catégories :
 
-PSU: reproduction de commande existante
+- * **`Graphical`** — Projets de rendu et d'interactivité graphique.
 
-CPE: Mise en place de crptage et d'algo
+- * **`Command_shell`** — Recréation d'un interpréteur de commandes (Shell) et utilitaires système.
 
-Math: Mathematiques
+- * **`Algorithm`** — Implémentation d'algorithmes complexes, cryptographie et structures de données.
 
-Tardis: gestion de donnees d'un Csv, création de modele de prediction et un streamboard pour l'affichage des données
+- * **`Mathematics`** — Résolution de problèmes mathématiques, calculs matriciels et probabilités.
+
+- * **`AI_Data`** — Projets axés sur l'intelligence artificielle, le *machine learning* et le traitement de données.
+
+## En l'absence de `README.md` spécifique dans le dossier d'un projet, voici la procédure standard à suivre :
+
+1. Clonez le dépôt :
+```bash
+git clone [https://github.com/votre-nom-utilisateur/votre-depot.git](https://github.com/votre-nom-utilisateur/votre-depot.git)
+```
+
+2. Compilez le projet : 
+```bash
+make
+```
+
+3. Exécutez : 
+```bash
+./nom_du_programme
+```
+
+### Pensez à exécuter make clean ou make fclean pour nettoyer les fichiers objets et binaires générés.
 
 ## Contributeurs:
 - Hector Louis
+- Minflag (compte Epitech)

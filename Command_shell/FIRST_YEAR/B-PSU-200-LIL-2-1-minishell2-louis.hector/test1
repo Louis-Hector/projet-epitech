@@ -1,0 +1,22 @@
+total 92
+drwxrwxr-x 2 louishector louishector  4096 Mar 24 14:41 include
+drwxrwxr-x 3 louishector louishector  4096 Mar 24 14:41 lib
+-rw-rw-r-- 1 louishector louishector 22030 Apr  3 10:15 libmy.a
+-rw-rw-r-- 1 louishector louishector  3749 Mar 28 10:36 main.c
+-rw-rw-r-- 1 louishector louishector  5296 Apr  3 10:15 main.o
+-rw-rw-r-- 1 louishector louishector   799 Mar 28 10:39 Makefile
+-rwxrwxr-x 1 louishector louishector 36528 Apr  3 10:15 mysh
+drwxrwxr-x 2 louishector louishector  4096 Apr  3 10:15 src
+drwxrwxr-x 2 louishector louishector  4096 Mar 28 10:38 test
+-rw-r--r-- 1 louishector louishector     0 Apr  3 10:16 test1
+total 96
+drwxrwxr-x 2 louishector louishector  4096 Mar 24 14:41 include
+drwxrwxr-x 3 louishector louishector  4096 Mar 24 14:41 lib
+-rw-rw-r-- 1 louishector louishector 22030 Apr  3 10:15 libmy.a
+-rw-rw-r-- 1 louishector louishector  3749 Mar 28 10:36 main.c
+-rw-rw-r-- 1 louishector louishector  5296 Apr  3 10:15 main.o
+-rw-rw-r-- 1 louishector louishector   799 Mar 28 10:39 Makefile
+-rwxrwxr-x 1 louishector louishector 36528 Apr  3 10:15 mysh
+drwxrwxr-x 2 louishector louishector  4096 Apr  3 10:15 src
+drwxrwxr-x 2 louishector louishector  4096 Mar 28 10:38 test
+-rw-r--r-- 1 louishector louishector   632 Apr  3 10:16 test1

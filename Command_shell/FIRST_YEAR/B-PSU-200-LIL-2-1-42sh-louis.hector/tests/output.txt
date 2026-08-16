@@ -1,0 +1,6 @@
+total 104
+-rw-r--r-- 1 louishector louishector    14 May  9 19:08 coucou
+-rw-r--r-- 1 louishector louishector     0 May  9 19:08 output.txt
+-rwxrwxrwx 1 louishector louishector  3969 May  9 12:46 tester.sh
+-rw-rw-r-- 1 louishector louishector 28020 May  6 10:24 tests
+-rw-rw-r-- 1 louishector louishector 69160 May  9 17:42 test_shell.c
