@@ -1,7 +1,0 @@
-*.o
-*.a
-42sh
-test
-*.gcda
-*.gcno
-unit_tests

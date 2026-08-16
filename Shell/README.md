@@ -1,4 +1,4 @@
-## Shell :
+## SHELL :
 
 Welcome to the **Command Shell** section, featuring projects focused on UNIX system calls, process management, file systems, terminal manipulation, and shell architecture.
 
