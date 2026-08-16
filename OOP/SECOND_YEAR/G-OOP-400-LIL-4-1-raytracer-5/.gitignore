@@ -1,0 +1,6 @@
+raytracer
+*.ppm
+compile_commands.json
+.cache/
+result
+*.o
