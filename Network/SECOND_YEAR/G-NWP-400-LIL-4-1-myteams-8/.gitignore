@@ -1,0 +1,5 @@
+*.o
+myteams_server
+myteams_cli
+*.db
+tests
