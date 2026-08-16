@@ -1,45 +1,60 @@
-## Projets Epitech :
+## Epitech Projects:
 
-Bienvenue sur mon dépôt regroupant les différents projets réalisés au cours de mon cursus à **Epitech**.
+Welcome to my repository containing the various projects completed during my studies at **Epitech**.
 
-## Technologies et Langages
+---
 
-- **Langages principaux :** C, C++, Python, JupyterNotebook
-- **Compilation Systeme :** Make
+## Technologies and Languages
+
+- **Languages:** `C`, `C++`, `Python`, `Jupyter Notebook`
+- **Libraries & Frameworks:** `CSFML`, `ncurses, n8n`
+- **Build System:** `Make`
+
+---
 
 ## Structure des Projets
 
-Les projets sont organisés par catégories :
+The projects are organized by technical modules and domains:
 
-- * **`Graphical`** — Projets de rendu et d'interactivité graphique.
+- **[`Graphical`](./Graphical)** — 2D rendering, game loops, animations, and collision algorithms using CSFML.
 
-- * **`Command_shell`** — Recréation d'un interpréteur de commandes (Shell) et utilitaires système.
+- **[`Command_shell`](./Shell)** — UNIX system programming, process handling, and custom shell implementations.
 
-- * **`Algorithm`** — Implémentation d'algorithmes complexes, cryptographie et structures de données.
+- **[`Algorithm`](./Algorithm)** — Data structures, pathfinding, compilers, and virtual machine architecture.
 
-- * **`Mathematics`** — Résolution de problèmes mathématiques, calculs matriciels et probabilités.
+- **[`Mathematics`](./Mathematics)** — Linear algebra, matrix transformations, statistics, and signal analysis.
 
-- * **`AI_Data`** — Projets axés sur l'intelligence artificielle, le *machine learning* et le traitement de données.
+- **[`AI_Data`](./AI_Data)** — Machine learning, reinforcement learning, prompt engineering, and automated data pipelines.
 
-## En l'absence de `README.md` spécifique dans le dossier d'un projet, voici la procédure standard à suivre :
+- **[`Network`](./Network)** — Socket programming, network protocols (FTP), and client-server architectures.
 
-1. Clonez le dépôt :
+---
+
+## Compilation 
+
+In the absence of a specific `README.md` inside a project folder, follow the standard execution steps:
+
+1. Clone the repository :
 ```bash
-git clone [https://github.com/votre-nom-utilisateur/votre-depot.git](https://github.com/votre-nom-utilisateur/votre-depot.git)
+git clone [https://github.com/your-name-user/yout-repository.git](https://github.com/your-name-user/your-repository.git)
+cd votre-depot.git
 ```
 
-2. Compilez le projet : 
+2. Compile the project : 
 ```bash
 make
 ```
 
-3. Exécutez : 
+3. Execute : 
 ```bash
 ./nom_du_programme
 ```
 
-### Pensez à exécuter make clean ou make fclean pour nettoyer les fichiers objets et binaires générés.
+### Make sure to run make clean or make fclean to clean up object files and generated binaries before committing changes.
+### Don't push your .env or .venv
 
-## Contributeurs:
-- Hector Louis
-- Minflag (compte Epitech)
+---
+
+## Contributors:
+- **Hector Louis**
+- **Minflag (Epitech Account)**
