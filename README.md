@@ -30,7 +30,7 @@ The projects are organized by technical modules and domains:
 
 - **[`Shell`](./Shell)** — UNIX system programming, process handling, and custom shell implementations.
 
-- **[`Special_Project`](./Special_Project)** - Capstone projects integrating TCP servers, autonomous Python AI, and real-time SFML graphics, Raylib.
+- **[`Special_Project`](./Special_Project)** - Several major projects, such as end-of-year or personal projects.
 
 - **[`Thread`](./Thread)** — Concurrent programming, multi-threading (`pthread`, `std::thread`), mutex synchronization, and IPC.
 
